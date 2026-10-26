@@ -1,0 +1,82 @@
+{
+  "version": "1.0.2",
+  "files": [
+    {
+      "skill": "instagram-extraction",
+      "client": "chatgpt",
+      "path": "dist/downloads/chatgpt/instagram-extraction.zip",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/instagram-extraction.zip",
+      "sha256": "14be0824312d42403bdbd4d42d70f14e61a50003f2a7d74ebcd9cfb378b44404"
+    },
+    {
+      "skill": "mamitsu-app-integration",
+      "client": "chatgpt",
+      "path": "dist/downloads/chatgpt/mamitsu-app-integration.zip",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/mamitsu-app-integration.zip",
+      "sha256": "ddccdc895446268925e806b324880e1dd0ff1e59ba049396b38fea55876464af"
+    },
+    {
+      "skill": "mamitsu",
+      "client": "chatgpt",
+      "path": "dist/downloads/chatgpt/mamitsu.zip",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/mamitsu.zip",
+      "sha256": "757fdf92aaf91d0207e7145e0b61b6f0602d67257edc14fcc4c18addab6def78"
+    },
+    {
+      "skill": "tiktok-extraction",
+      "client": "chatgpt",
+      "path": "dist/downloads/chatgpt/tiktok-extraction.zip",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/tiktok-extraction.zip",
+      "sha256": "7c5a1bf63bad70d6291a78927ab3bbdc45b3a9d3c228a1a4f07953a73bae535c"
+    },
+    {
+      "skill": "x-post-extraction",
+      "client": "chatgpt",
+      "path": "dist/downloads/chatgpt/x-post-extraction.zip",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/x-post-extraction.zip",
+      "sha256": "c5ab37bd774349bf05c5a914081c557b09086393b8e5ac410fe9471ac609ca3e"
+    },
+    {
+      "skill": "youtube-extraction",
+      "client": "chatgpt",
+      "path": "dist/downloads/chatgpt/youtube-extraction.zip",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/youtube-extraction.zip",
+      "sha256": "73dfb273093bb1e9e4a739bd43e3943553e1a7a35cdfd12d649d917c0beea568"
+    },
+    {
+      "skill": "instagram-extraction",
+      "client": "grok-bot",
+      "path": "dist/downloads/grok-bot/instagram-extraction.md",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/grok-bot/instagram-extraction.md",
+      "sha256": "946a2e6592a2f75890d3b0c5c2184ab659bd6c9e86ab00522eb84dedf1ede30c"
+    },
+    {
+      "skill": "mamitsu-app-integration",
+      "client": "grok-bot",
+      "path": "dist/downloads/grok-bot/mamitsu-app-integration.md",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/grok-bot/mamitsu-app-integration.md",
+      "sha256": "ee569c6eac85e6470d2d76eb9be33d49a8461262f2c8c5a4c53da87710abcf82"
+    },
+    {
+      "skill": "mamitsu",
+      "client": "grok-bot",
+      "path": "dist/downloads/grok-bot/mamitsu.md",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/grok-bot/mamitsu.md",
+      "sha256": "dc3e3837096a035f777dbe9f4d75809a0bb7b65f15226500035f2618180d1284"
+    },
+    {
+      "skill": "tiktok-extraction",
+      "client": "grok-bot",
+      "path": "dist/downloads/grok-bot/tiktok-extraction.md",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/grok-bot/tiktok-extraction.md",
+      "sha256": "f4aae2e4cad51deced220cad4076d7880824050b468e600fec9c647d09c0fb49"
+    },
+    {
+      "skill": "youtube-extraction",
+      "client": "grok-bot",
+      "path": "dist/downloads/grok-bot/youtube-extraction.md",
+      "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/grok-bot/youtube-extraction.md",
+      "sha256": "cca4c63b693d1922386d20b07bd8161f4912d08b4c955f8676b98bcc7b50a65a"
+    }
+  ]
+}

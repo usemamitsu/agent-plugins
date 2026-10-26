@@ -1,0 +1,14 @@
+{
+  "name": "mamitsu",
+  "description": "Skills and OAuth MCP for extracting public social posts.",
+  "owner": {
+    "name": "mamitsu"
+  },
+  "plugins": [
+    {
+      "name": "mamitsu",
+      "source": "./dist/claude/mamitsu",
+      "description": "Extract structured data from public social posts."
+    }
+  ]
+}

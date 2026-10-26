@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mamitsu",
+  "version": "1.0.2",
+  "description": "Extract structured data from public social posts with mamitsu.",
+  "author": {
+    "name": "mamitsu",
+    "url": "https://usemamitsu.com"
+  },
+  "homepage": "https://usemamitsu.com",
+  "repository": "https://github.com/usemamitsu/agent-plugins"
+}

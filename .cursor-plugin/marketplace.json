@@ -1,0 +1,14 @@
+{
+  "name": "mamitsu",
+  "owner": {
+    "name": "mamitsu"
+  },
+  "plugins": [
+    {
+      "name": "mamitsu",
+      "source": ".",
+      "description": "Extract structured data from public social posts.",
+      "version": "1.0.2"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "mamitsu client installation contract v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "contractVersion", "repository", "releaseVersion", "downloadsManifest", "mcp", "clients", "standaloneSkills"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "contractVersion": {"const": 2},
+    "repository": {"const": "usemamitsu/agent-plugins"},
+    "releaseVersion": {"type": "string"},
+    "downloadsManifest": {"type": "string"},
+    "mcp": {
+      "type": "object", "additionalProperties": false,
+      "required": ["endpoint", "transport", "authorization", "manual"],
+      "properties": {
+        "endpoint": {"const": "https://usemamitsu.com/mcp"},
+        "transport": {"const": "streamable-http"},
+        "authorization": {"type": "string"},
+        "manual": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    },
+    "clients": {
+      "type": "object", "additionalProperties": false,
+      "required": ["claude-code", "claude-web-desktop", "codex", "chatgpt", "cursor", "hermes", "grok-bot", "pi", "other"],
+      "properties": {
+        "claude-code": {"$ref": "#/$defs/client"},
+        "claude-web-desktop": {"$ref": "#/$defs/client"},
+        "codex": {"$ref": "#/$defs/client"},
+        "chatgpt": {"$ref": "#/$defs/client"},
+        "cursor": {"$ref": "#/$defs/client"},
+        "hermes": {"$ref": "#/$defs/client"},
+        "grok-bot": {"$ref": "#/$defs/client"},
+        "pi": {"$ref": "#/$defs/client"},
+        "other": {"$ref": "#/$defs/client"}
+      }
+    },
+    "standaloneSkills": {
+      "type": "object", "additionalProperties": false,
+      "required": ["install", "selectOne", "updateCheck", "update", "skills"],
+      "properties": {
+        "install": {"type": "string"}, "selectOne": {"type": "string"},
+        "updateCheck": {"type": "string"}, "update": {"type": "string"},
+        "skills": {"type": "array", "minItems": 6, "maxItems": 6, "uniqueItems": true, "items": {"type": "string"}}
+      }
+    }
+  },
+  "$defs": {
+    "client": {
+      "type": "object", "additionalProperties": false,
+      "required": ["displayName", "package", "primaryMode", "combined", "skillsOnly", "update", "routes", "documentation"],
+      "properties": {
+        "displayName": {"type": "string"}, "package": {"type": "string"},
+        "primaryMode": {"enum": ["combined", "separate"]},
+        "combined": {"type": ["string", "null"]}, "skillsOnly": {"type": ["string", "null"]},
+        "handoff": {"type": "string"}, "update": {"type": "string"},
+        "documentation": {"type": "string", "pattern": "^https://"},
+        "routes": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mcp", "skills", "authorize", "update"],
+          "properties": {
+            "combined": {"$ref": "#/$defs/route"}, "mcp": {"$ref": "#/$defs/route"},
+            "skills": {"$ref": "#/$defs/route"}, "authorize": {"$ref": "#/$defs/route"},
+            "update": {"$ref": "#/$defs/route"}
+          }
+        }
+      },
+      "allOf": [{
+        "if": {"properties": {"primaryMode": {"const": "combined"}}},
+        "then": {"properties": {"routes": {"required": ["combined"]}}}
+      }]
+    },
+    "route": {
+      "type": "object", "additionalProperties": false, "required": ["steps"],
+      "properties": {
+        "steps": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/step"}}
+      }
+    },
+    "step": {
+      "oneOf": [
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "text", "command"],
+          "properties": {"kind": {"const": "command"}, "text": {"type": "string"}, "command": {"type": "string", "minLength": 1}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "text", "url"],
+          "properties": {"kind": {"const": "link"}, "text": {"type": "string"}, "url": {"type": "string", "pattern": "^https://"}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "text", "url", "artifact"],
+          "properties": {"kind": {"const": "download"}, "text": {"type": "string"}, "url": {"type": "string", "pattern": "^https://"}, "artifact": {"type": "string"}}
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "text"],
+          "properties": {"kind": {"const": "instruction"}, "text": {"type": "string", "minLength": 1}}
+        }
+      ]
+    }
+  }
+}

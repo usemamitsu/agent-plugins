@@ -1,0 +1,22 @@
+{
+  "name": "@usemamitsu/pi-mamitsu",
+  "version": "1.0.2",
+  "private": true,
+  "description": "mamitsu MCP and skills for Pi",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/mamitsu.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  }
+}

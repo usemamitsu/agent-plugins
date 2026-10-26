@@ -1,0 +1,271 @@
+{
+  "$schema": "./client-installs.schema.json",
+  "contractVersion": 2,
+  "repository": "usemamitsu/agent-plugins",
+  "releaseVersion": "1.0.2",
+  "downloadsManifest": "dist/downloads/index.json",
+  "mcp": {
+    "endpoint": "https://usemamitsu.com/mcp",
+    "transport": "streamable-http",
+    "authorization": "OAuth 2.1: sign in with GitHub and approve mamitsu in your client.",
+    "manual": {
+      "claude-code": "claude mcp add --transport http mamitsu https://usemamitsu.com/mcp",
+      "codex": "codex mcp add mamitsu --url https://usemamitsu.com/mcp",
+      "hermes": "hermes mcp add mamitsu --url https://usemamitsu.com/mcp",
+      "pi": "pi mcp add mamitsu --url https://usemamitsu.com/mcp"
+    }
+  },
+  "clients": {
+    "claude-code": {
+      "displayName": "Claude Code",
+      "package": "dist/claude/mamitsu",
+      "primaryMode": "combined",
+      "combined": "claude plugin marketplace add usemamitsu/agent-plugins && claude plugin install mamitsu@mamitsu",
+      "skillsOnly": "npx skills add usemamitsu/agent-plugins -a claude-code",
+      "update": "claude plugin marketplace update mamitsu && claude plugin update mamitsu@mamitsu",
+      "routes": {
+        "combined": {"steps": [
+          {"kind": "command", "text": "Install the mamitsu plugin.", "command": "claude plugin marketplace add usemamitsu/agent-plugins && claude plugin install mamitsu@mamitsu"}
+        ]},
+        "mcp": {"steps": [
+          {"kind": "command", "text": "Add the MCP server.", "command": "claude mcp add --transport http mamitsu https://usemamitsu.com/mcp"}
+        ]},
+        "skills": {"steps": [
+          {"kind": "command", "text": "Choose the skills to install.", "command": "npx skills add usemamitsu/agent-plugins -a claude-code"}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Start Claude Code, run /mcp, select mamitsu, and complete sign-in and consent."}
+        ]},
+        "update": {"steps": [
+          {"kind": "command", "text": "Update the plugin and restart Claude Code.", "command": "claude plugin marketplace update mamitsu && claude plugin update mamitsu@mamitsu"}
+        ]}
+      },
+      "documentation": "https://code.claude.com/docs/en/discover-plugins"
+    },
+    "claude-web-desktop": {
+      "displayName": "Claude",
+      "package": "dist/claude/mamitsu",
+      "primaryMode": "combined",
+      "combined": null,
+      "skillsOnly": null,
+      "handoff": "https://claude.ai/customize",
+      "update": "Update mamitsu through its marketplace in Customize > Plugins.",
+      "routes": {
+        "combined": {"steps": [
+          {"kind": "link", "text": "Open Customize in Claude.", "url": "https://claude.ai/customize"},
+          {"kind": "instruction", "text": "Open Plugins > Add > Add marketplace. Enter usemamitsu/agent-plugins and install mamitsu."},
+          {"kind": "instruction", "text": "Open the plugin's Connectors section and choose Add or Connect for mamitsu. Sign in with GitHub and approve access."}
+        ]},
+        "mcp": {"steps": [
+          {"kind": "link", "text": "Add the mamitsu connector to Claude.", "url": "https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp"},
+          {"kind": "instruction", "text": "Confirm the connector and complete sign-in. This route connects MCP only; it does not install skills."}
+        ]},
+        "skills": {"steps": [
+          {"kind": "download", "text": "Download a skill ZIP. Each ZIP includes its references; choose additional skills from the download collection.", "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/mamitsu.zip", "artifact": "dist/downloads/chatgpt/mamitsu.zip"},
+          {"kind": "instruction", "text": "In Customize > Skills, upload the ZIP and enable the skill. Repeat for each skill you want."}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Use Add or Connect in the plugin's Connectors section, then complete GitHub sign-in and mamitsu consent."}
+        ]},
+        "update": {"steps": [
+          {"kind": "instruction", "text": "Open Customize > Plugins and update mamitsu through its marketplace. For uploaded skills, download the current ZIP and replace the uploaded skill."}
+        ]}
+      },
+      "documentation": "https://support.claude.com/en/articles/13837440-use-plugins-in-claude"
+    },
+    "codex": {
+      "displayName": "Codex",
+      "package": ".",
+      "primaryMode": "combined",
+      "combined": "codex plugin marketplace add usemamitsu/agent-plugins && codex plugin add mamitsu@mamitsu",
+      "skillsOnly": "npx skills add usemamitsu/agent-plugins -a codex",
+      "update": "codex plugin marketplace upgrade mamitsu",
+      "routes": {
+        "combined": {"steps": [
+          {"kind": "command", "text": "Install the mamitsu plugin in Codex CLI.", "command": "codex plugin marketplace add usemamitsu/agent-plugins && codex plugin add mamitsu@mamitsu"}
+        ]},
+        "mcp": {"steps": [
+          {"kind": "command", "text": "Add the MCP server.", "command": "codex mcp add mamitsu --url https://usemamitsu.com/mcp"}
+        ]},
+        "skills": {"steps": [
+          {"kind": "command", "text": "Choose the skills to install.", "command": "npx skills add usemamitsu/agent-plugins -a codex"}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "command", "text": "For a standalone MCP connection, sign in to mamitsu.", "command": "codex mcp login mamitsu"},
+          {"kind": "instruction", "text": "For a plugin install, complete the connection prompt in Codex. Sign in with GitHub and approve mamitsu."}
+        ]},
+        "update": {"steps": [
+          {"kind": "command", "text": "Refresh the marketplace and start a new Codex session.", "command": "codex plugin marketplace upgrade mamitsu"}
+        ]}
+      },
+      "documentation": "https://developers.openai.com/learn/developers-codex-plugin"
+    },
+    "chatgpt": {
+      "displayName": "ChatGPT",
+      "package": "dist/downloads/chatgpt",
+      "primaryMode": "separate",
+      "combined": null,
+      "skillsOnly": null,
+      "handoff": "https://chatgpt.com",
+      "update": "Refresh MCP tools in the plugin settings. Replace uploaded skills separately in Plugins > Skills.",
+      "routes": {
+        "mcp": {"steps": [
+          {"kind": "link", "text": "Open ChatGPT.", "url": "https://chatgpt.com"},
+          {"kind": "instruction", "text": "Open Plugins > + > Add custom MCP server in ChatGPT on the web."},
+          {"kind": "instruction", "text": "Name it mamitsu. Under Connection, enter https://usemamitsu.com/mcp and select OAuth. Review the permissions, choose Create as a plugin, and install the resulting MCP plugin."},
+          {"kind": "instruction", "text": "Complete GitHub sign-in and mamitsu consent. Start a new conversation, type @, and choose mamitsu."}
+        ]},
+        "skills": {"steps": [
+          {"kind": "download", "text": "Download the mamitsu skill ZIP, or choose individual skills from the download collection.", "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/mamitsu.zip", "artifact": "dist/downloads/chatgpt/mamitsu.zip"},
+          {"kind": "instruction", "text": "Open Plugins > Skills > Create > Upload from your computer. Upload the skill and finish the review. Repeat for each skill you want."}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Complete the MCP plugin's OAuth connection with GitHub and approve mamitsu. Uploading a skill does not connect your account."}
+        ]},
+        "update": {"steps": [
+          {"kind": "instruction", "text": "Refresh MCP tools in ChatGPT's plugin settings. Download the current skill ZIPs and replace your uploaded skills separately in Plugins > Skills."}
+        ]}
+      },
+      "documentation": "https://help.openai.com/en/articles/20001066-skills-in-chatgpt"
+    },
+    "cursor": {
+      "displayName": "Cursor",
+      "package": ".",
+      "primaryMode": "combined",
+      "combined": null,
+      "skillsOnly": "npx skills add usemamitsu/agent-plugins -a cursor",
+      "update": "Update mamitsu in Customize, then start a new agent. For separately installed skills, run npx skills update.",
+      "routes": {
+        "combined": {"steps": [
+          {"kind": "instruction", "text": "Open Customize in Cursor's sidebar and search for mamitsu."},
+          {"kind": "instruction", "text": "Choose Install and select your project or user scope."}
+        ]},
+        "mcp": {"steps": [
+          {"kind": "instruction", "text": "Open Customize > MCPs > Add New MCP Server. Add mamitsu with URL https://usemamitsu.com/mcp, then choose Connect."}
+        ]},
+        "skills": {"steps": [
+          {"kind": "command", "text": "Choose the skills to install.", "command": "npx skills add usemamitsu/agent-plugins -a cursor"}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Find mamitsu's MCP server in Customize and choose Connect. Complete GitHub sign-in and mamitsu consent."}
+        ]},
+        "update": {"steps": [
+          {"kind": "instruction", "text": "Update mamitsu in Customize, then start a new agent. For separately installed skills, run npx skills update."}
+        ]}
+      },
+      "documentation": "https://cursor.com/docs/plugins"
+    },
+    "hermes": {
+      "displayName": "Hermes",
+      "package": "dist/portable/mamitsu",
+      "primaryMode": "combined",
+      "combined": "hermes plugins install usemamitsu/agent-plugins/dist/portable/mamitsu --no-enable && hermes plugins enable mamitsu",
+      "skillsOnly": "npx skills add usemamitsu/agent-plugins -a hermes",
+      "update": "hermes plugins update mamitsu",
+      "routes": {
+        "combined": {"steps": [
+          {"kind": "command", "text": "Install and enable the mamitsu plugin.", "command": "hermes plugins install usemamitsu/agent-plugins/dist/portable/mamitsu --no-enable && hermes plugins enable mamitsu"}
+        ]},
+        "mcp": {"steps": [
+          {"kind": "command", "text": "Add the MCP server.", "command": "hermes mcp add mamitsu --url https://usemamitsu.com/mcp"}
+        ]},
+        "skills": {"steps": [
+          {"kind": "command", "text": "Choose the skills to install.", "command": "npx skills add usemamitsu/agent-plugins -a hermes"}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Start Hermes and complete mamitsu's MCP sign-in prompt. Sign in with GitHub and approve access."}
+        ]},
+        "update": {"steps": [
+          {"kind": "command", "text": "Update the plugin and start a new Hermes session.", "command": "hermes plugins update mamitsu"}
+        ]}
+      },
+      "documentation": "https://hermes-agent.nousresearch.com/docs/user-guide/features/plugins/"
+    },
+    "grok-bot": {
+      "displayName": "Grok Bot",
+      "package": "dist/grok-bot/mamitsu",
+      "primaryMode": "separate",
+      "combined": null,
+      "skillsOnly": null,
+      "handoff": "https://docs.x.ai/grok-bot/skills-routines-and-automations",
+      "update": "Download the current Grok Bot skill instructions and ask the Bot to replace each saved skill with the same name.",
+      "routes": {
+        "mcp": {"steps": [
+          {"kind": "instruction", "text": "Ask your Bot to add a custom MCP server named mamitsu using Remote HTTPS at https://usemamitsu.com/mcp. For a Team Bot, its owner or manager can manage this in Setup > Plugins."},
+          {"kind": "instruction", "text": "Complete the OAuth sign-in with GitHub and approve mamitsu for your account."}
+        ]},
+        "skills": {"steps": [
+          {"kind": "download", "text": "Download the Grok Bot mamitsu instructions. The Grok Bot collection includes five self-contained skills.", "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/grok-bot/mamitsu.md", "artifact": "dist/downloads/grok-bot/mamitsu.md"},
+          {"kind": "instruction", "text": "Give the Bot the downloaded instructions and ask: Save these instructions as a skill named mamitsu, including the reference sections. Repeat with each additional Grok Bot skill you want."},
+          {"kind": "instruction", "text": "If the skill is missing from the / menu, open Connect apps, select the connected count, and enable it under Private skills. Use Grok's native X access for ordinary X requests."}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Complete the custom MCP server's OAuth connection. Each person using an OAuth Team Bot plugin signs in with their own account."}
+        ]},
+        "update": {"steps": [
+          {"kind": "instruction", "text": "Download the current files from the Grok Bot collection. Ask the Bot to replace each saved skill's instructions and references, keeping its name. Use this collection for updates as well as installation; it excludes the X skill."}
+        ]}
+      },
+      "documentation": "https://docs.x.ai/grok-bot/skills-routines-and-automations"
+    },
+    "pi": {
+      "displayName": "Pi",
+      "package": ".",
+      "primaryMode": "combined",
+      "combined": "pi install git:github.com/usemamitsu/agent-plugins@main && pi \"/mcp login mamitsu\"",
+      "skillsOnly": "npx skills add usemamitsu/agent-plugins -a pi",
+      "update": "pi update --extensions",
+      "routes": {
+        "combined": {"steps": [
+          {"kind": "command", "text": "Install mamitsu and open Pi for sign-in.", "command": "pi install git:github.com/usemamitsu/agent-plugins@main && pi \"/mcp login mamitsu\""},
+          {"kind": "instruction", "text": "Pi loads mamitsu and its skills, then opens the browser. Sign in with GitHub and approve mamitsu."}
+        ]},
+        "mcp": {"steps": [
+          {"kind": "command", "text": "Add the MCP server.", "command": "pi mcp add mamitsu --url https://usemamitsu.com/mcp"},
+          {"kind": "command", "text": "Sign in to mamitsu.", "command": "pi mcp login mamitsu"}
+        ]},
+        "skills": {"steps": [
+          {"kind": "command", "text": "Choose the skills to install.", "command": "npx skills add usemamitsu/agent-plugins -a pi"}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "For a package install, run /mcp login mamitsu inside Pi. Standalone pi mcp commands only load file-configured servers, not package extensions."}
+        ]},
+        "update": {"steps": [
+          {"kind": "command", "text": "Update installed packages.", "command": "pi update --extensions"},
+          {"kind": "instruction", "text": "Run /reload in an existing Pi session to load the update."}
+        ]}
+      },
+      "documentation": "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md"
+    },
+    "other": {
+      "displayName": "Other agents",
+      "package": ".",
+      "primaryMode": "separate",
+      "combined": null,
+      "skillsOnly": "npx skills add usemamitsu/agent-plugins",
+      "update": "npx skills check && npx skills update",
+      "routes": {
+        "mcp": {"steps": [
+          {"kind": "instruction", "text": "Add https://usemamitsu.com/mcp as a remote Streamable HTTP MCP server. Use a client with OAuth support, then sign in with GitHub and approve mamitsu."}
+        ]},
+        "skills": {"steps": [
+          {"kind": "command", "text": "Choose your agent and the skills to install.", "command": "npx skills add usemamitsu/agent-plugins"}
+        ]},
+        "authorize": {"steps": [
+          {"kind": "instruction", "text": "Use your MCP client's Connect or Sign in action. Skill installation does not authorize the connection."}
+        ]},
+        "update": {"steps": [
+          {"kind": "command", "text": "Check and update installed skills.", "command": "npx skills check && npx skills update"}
+        ]}
+      },
+      "documentation": "https://github.com/vercel-labs/skills#readme"
+    }
+  },
+  "standaloneSkills": {
+    "install": "npx skills add usemamitsu/agent-plugins",
+    "selectOne": "npx skills add usemamitsu/agent-plugins --skill <skill-name>",
+    "updateCheck": "npx skills check",
+    "update": "npx skills update",
+    "skills": ["mamitsu", "mamitsu-app-integration", "youtube-extraction", "instagram-extraction", "tiktok-extraction", "x-post-extraction"]
+  }
+}

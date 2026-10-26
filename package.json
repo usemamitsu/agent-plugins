@@ -1,0 +1,33 @@
+{
+  "name": "@usemamitsu/agent-plugins",
+  "version": "1.0.2",
+  "private": true,
+  "description": "mamitsu skills and MCP plugins for extracting information from social posts.",
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "./dist/pi/mamitsu/extensions/mamitsu.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "scripts": {
+    "generate": "python3 tools/generate.py",
+    "check:generated": "python3 tools/check.py",
+    "check:schemas": "node tools/validate-schemas.mjs",
+    "test": "python3 -m unittest discover -s tools/test -v",
+    "check": "npm run check:generated && npm run check:schemas && npm test"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "yaml": "2.9.1"
+  }
+}

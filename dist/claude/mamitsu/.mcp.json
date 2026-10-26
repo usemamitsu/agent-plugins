@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mamitsu": {
+      "type": "http",
+      "url": "https://usemamitsu.com/mcp"
+    }
+  }
+}
