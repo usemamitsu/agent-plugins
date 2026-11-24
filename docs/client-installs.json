@@ -28,7 +28,7 @@
           {"kind": "command", "text": "Install the mamitsu plugin.", "command": "claude plugin marketplace add usemamitsu/agent-plugins && claude plugin install mamitsu@mamitsu"}
         ]},
         "mcp": {"steps": [
-          {"kind": "command", "text": "Add the MCP server.", "command": "claude mcp add --transport http mamitsu https://usemamitsu.com/mcp"}
+          {"kind": "command", "text": "Add the MCP server. It brings the extract tool and the mamitsu skills in one step (Claude Code 2.1.331 or later). Use the plugin or this command, one at a time: with both, Claude lists the skills twice.", "command": "claude mcp add --transport http mamitsu https://usemamitsu.com/mcp"}
         ]},
         "skills": {"steps": [
           {"kind": "command", "text": "Choose the skills to install.", "command": "npx skills add usemamitsu/agent-plugins -a claude-code"}
@@ -46,29 +46,33 @@
       "displayName": "Claude",
       "package": "dist/claude/mamitsu",
       "primaryMode": "combined",
-      "combined": null,
+      "combined": "https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp",
       "skillsOnly": null,
       "handoff": "https://claude.ai/customize",
-      "update": "Update mamitsu through its marketplace in Customize > Plugins.",
+      "update": "The connector serves the current mamitsu skills. For the plugin, update mamitsu through its marketplace in Customize > Plugins.",
       "routes": {
         "combined": {"steps": [
+          {"kind": "link", "text": "Add mamitsu to Claude.", "url": "https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp"},
+          {"kind": "instruction", "text": "Confirm the connector in the dialog, then sign in with GitHub and approve mamitsu. The connector brings the extract tool and the mamitsu skills."}
+        ]},
+        "plugin": {"steps": [
           {"kind": "link", "text": "Open Customize in Claude.", "url": "https://claude.ai/customize"},
           {"kind": "instruction", "text": "Open Plugins > Add > Add marketplace. Enter usemamitsu/agent-plugins and install mamitsu."},
-          {"kind": "instruction", "text": "Open the plugin's Connectors section and choose Add or Connect for mamitsu. Sign in with GitHub and approve access."}
+          {"kind": "instruction", "text": "Open the plugin's Connectors section and choose Add or Connect for mamitsu. Sign in with GitHub and approve access. Use the plugin or the connector, one at a time: with both, Claude lists the skills twice."}
         ]},
         "mcp": {"steps": [
           {"kind": "link", "text": "Add the mamitsu connector to Claude.", "url": "https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp"},
-          {"kind": "instruction", "text": "Confirm the connector and complete sign-in. This route connects MCP only; it does not install skills."}
+          {"kind": "instruction", "text": "Confirm the connector and complete sign-in. The connector brings the extract tool and the mamitsu skills."}
         ]},
         "skills": {"steps": [
           {"kind": "download", "text": "Download a skill ZIP. Each ZIP includes its references; choose additional skills from the download collection.", "url": "https://raw.githubusercontent.com/usemamitsu/agent-plugins/main/dist/downloads/chatgpt/mamitsu.zip", "artifact": "dist/downloads/chatgpt/mamitsu.zip"},
           {"kind": "instruction", "text": "In Customize > Skills, upload the ZIP and enable the skill. Repeat for each skill you want."}
         ]},
         "authorize": {"steps": [
-          {"kind": "instruction", "text": "Use Add or Connect in the plugin's Connectors section, then complete GitHub sign-in and mamitsu consent."}
+          {"kind": "instruction", "text": "Confirm the connector in the dialog, then complete GitHub sign-in and mamitsu consent. On Team and Enterprise, an organization Owner adds the connector once and each member connects their own account."}
         ]},
         "update": {"steps": [
-          {"kind": "instruction", "text": "Open Customize > Plugins and update mamitsu through its marketplace. For uploaded skills, download the current ZIP and replace the uploaded skill."}
+          {"kind": "instruction", "text": "The connector serves the current skills. For the plugin, open Customize > Plugins and update mamitsu through its marketplace. For uploaded skills, download the current ZIP and replace the uploaded skill."}
         ]}
       },
       "documentation": "https://support.claude.com/en/articles/13837440-use-plugins-in-claude"

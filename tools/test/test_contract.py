@@ -96,9 +96,10 @@ class ContractTests(unittest.TestCase):
                                      for step in client["routes"][route]["steps"]))
         claude = contract["clients"]["claude-web-desktop"]
         self.assertTrue(claude["routes"]["combined"]["steps"])
-        self.assertIn("Connectors", json.dumps(claude["routes"]["combined"]))
-        self.assertIn("modal=add-custom-connector",
-                      claude["routes"]["mcp"]["steps"][0]["url"])
+        self.assertIn("Connectors", json.dumps(claude["routes"]["plugin"]))
+        for route in ("combined", "mcp"):
+            self.assertIn("modal=add-custom-connector",
+                          claude["routes"][route]["steps"][0]["url"])
         self.assertIn("other", contract["clients"])
 
     def test_download_contract_matches_shipped_assets_and_hashes(self):

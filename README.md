@@ -16,7 +16,13 @@ Choose your agent and skills, or install one directly:
 npx skills add usemamitsu/agent-plugins --skill instagram-extraction
 ```
 
-Connect **`https://usemamitsu.com/mcp`** in your agent, sign in with GitHub,
+In Claude, [add mamitsu with one click](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp).
+Confirm the connector, sign in with GitHub, and approve mamitsu. Claude gets
+the `extract` tool and the skills together. In Claude Code, run
+`claude mcp add --transport http mamitsu https://usemamitsu.com/mcp` for the
+same result.
+
+In other agents, connect **`https://usemamitsu.com/mcp`**, sign in with GitHub,
 and approve mamitsu. Skills provide instructions; MCP provides the `extract`
 tool. You can install either independently.
 
