@@ -59,7 +59,7 @@
           "type": "object", "additionalProperties": false,
           "required": ["mcp", "skills", "authorize", "update"],
           "properties": {
-            "combined": {"$ref": "#/$defs/route"}, "mcp": {"$ref": "#/$defs/route"},
+            "combined": {"$ref": "#/$defs/route"}, "plugin": {"$ref": "#/$defs/route"}, "mcp": {"$ref": "#/$defs/route"},
             "skills": {"$ref": "#/$defs/route"}, "authorize": {"$ref": "#/$defs/route"},
             "update": {"$ref": "#/$defs/route"}
           }

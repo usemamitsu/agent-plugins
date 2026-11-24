@@ -1,23 +1,33 @@
 # Install mamitsu
 
 Connect MCP for the extraction tool. Add skills for reusable extraction
-workflows. Plugin-capable clients can install both together.
+workflows. Claude gets both from one connector, and plugin-capable clients can
+install both together.
 
 ## Claude web and desktop
 
-1. Open **Customize > Plugins > Add > Add marketplace**.
-2. Enter `usemamitsu/agent-plugins` and install **mamitsu**.
-3. In the plugin's **Connectors** section, choose **Add** or **Connect** for
-   mamitsu. Sign in with GitHub and approve access.
+[Add mamitsu to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp).
+The link opens Claude's Add custom connector dialog with mamitsu filled in.
+Confirm it, sign in with GitHub, and approve access. The connector brings the
+`extract` tool and the six mamitsu skills.
 
-Update mamitsu through its marketplace in **Customize > Plugins**.
+Skills from connectors are in public beta. They are on for Pro, Max, and Ultra
+plans, and a Team admin can turn them on. Enterprise support is coming. On
+Team and Enterprise, an organization Owner adds the connector once and each
+member connects their own account.
 
-**MCP only:** [Add the mamitsu connector](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=mamitsu&connectorUrl=https%3A%2F%2Fusemamitsu.com%2Fmcp).
-Confirm the connector and sign in. This installs no skills.
+**Plugin marketplace:** open **Customize > Plugins > Add > Add marketplace**,
+enter `usemamitsu/agent-plugins`, and install **mamitsu**. In the plugin's
+**Connectors** section, choose **Add** or **Connect** for mamitsu, then sign in
+with GitHub and approve access. Update it through its marketplace in
+**Customize > Plugins**.
 
 **Skills only:** download an individual [skill ZIP](#downloadable-skills),
 upload it under **Customize > Skills**, and enable it. To update an uploaded
 skill, replace it with the current ZIP.
+
+The connector and the plugin both provide the skills, so installing both lists
+them twice. Use one route.
 
 [Claude's plugin instructions](https://support.claude.com/en/articles/13837440-use-plugins-in-claude)
 
@@ -30,7 +40,17 @@ claude plugin install mamitsu@mamitsu
 
 Start Claude Code, run `/mcp`, select mamitsu, and finish sign-in.
 
-Update:
+**MCP and skills in one step:** with Claude Code 2.1.331 or later, one command
+adds the `extract` tool and the skills:
+
+```sh
+claude mcp add --transport http mamitsu https://usemamitsu.com/mcp
+```
+
+Run `/mcp`, select mamitsu, and finish sign-in. The plugin and this command
+both provide the skills, so installing both lists them twice. Use one route.
+
+Update the plugin:
 
 ```sh
 claude plugin marketplace update mamitsu
@@ -189,7 +209,7 @@ npx skills check
 npx skills update
 ```
 
-For MCP-only CLI configuration:
+For MCP-only CLI configuration (Claude Code also receives the skills this way):
 
 ```sh
 claude mcp add --transport http mamitsu https://usemamitsu.com/mcp

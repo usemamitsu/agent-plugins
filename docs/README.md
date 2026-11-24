@@ -11,6 +11,8 @@ authorization, and updates for each client. Its format is validated by
 
 - `routes` contains ordered `command`, `link`, `download`, or `instruction`
   steps. GUI routes do not need a shell command.
+- `plugin` is an optional route for clients that offer a plugin next to a
+  connector (Claude web and desktop).
 - `primaryMode` selects a combined plugin or separate MCP and skills routes.
 - `authorize` describes account connection separately from installation.
 - `combined`, `skillsOnly`, and `update` are convenient text fields; use
